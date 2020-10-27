@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button checkEmail, previous, Register;
     EditText ed_checkemail, name, lname, phoneno, email, password,specify1;
     FrameLayout f1, f2;
-    Spinner gender, country, state, city,indus;
+   Spinner indus;
     private AlertDialog progressDialog;
     ErrorLogs errorLogs;
     ArrayList<String> arrayList_country,arrayList_conID,arrayList_stateID;
@@ -67,21 +67,21 @@ public class RegisterActivity extends AppCompatActivity {
         phoneno = findViewById(R.id.Mobileno);
         email = findViewById(R.id.Personalemail);
         password = findViewById(R.id.pass);
-        gender = findViewById(R.id.gender);
-        country = findViewById(R.id.country);
-        state = findViewById(R.id.state);
-        city = findViewById(R.id.city);
-        indus=findViewById(R.id.indus);
+       // gender = findViewById(R.id.gender);
+       // country = findViewById(R.id.country);
+       // state = findViewById(R.id.state);
+        //city = findViewById(R.id.city);
+       indus=findViewById(R.id.industry);
         f1 = findViewById(R.id.frame1);
         f2 = findViewById(R.id.frame2);
-        specify1=findViewById(R.id.specify1);
+        specify1=findViewById(R.id.otherindustry);
         checkEmail = findViewById(R.id.submitt);
-        arrayList_country = new ArrayList<>();
-        arrayList_conID=new ArrayList<>();
-        arrayList_stateID=new ArrayList<>();
+       // arrayList_country = new ArrayList<>();
+     //   arrayList_conID=new ArrayList<>();
+       // arrayList_stateID=new ArrayList<>();
         errorLogs=new ErrorLogs(getApplicationContext());
         progressDialog = new SpotsDialog(this, R.style.Custom);
-        countryAPI();
+      //  countryAPI();
         GetIndustry();
         phoneno.addTextChangedListener(new TextWatcher() {
             @Override
@@ -194,25 +194,15 @@ public class RegisterActivity extends AppCompatActivity {
                     String user_phoneno = phoneno.getText().toString();
                     String user_email = email.getText().toString();
                     String user_password = password.getText().toString();
-                    String user_gender = gender.getSelectedItem().toString();
                     if( indusflag==1){
                         Indus=specify1.getText().toString();
                     }else{
                         Indus = indus.getSelectedItem().toString();
                     }
-                    String user_indus = Indus;
-                    String user_country=null,user_city=null,user_state=null;
-                    try{
-                        user_country = country.getSelectedItem().toString();
-                        user_city = city.getSelectedItem().toString();
-                        user_state = state.getSelectedItem().toString();
-                    }
-                    catch (Exception e){
-                        Toast.makeText(RegisterActivity.this, "Country State City loading...", Toast.LENGTH_SHORT).show();
-                    }
+
                     progressDialog.show();
 
-                    callapi(user_name, user_lname, user_phoneno, user_email, user_password, user_gender, user_country, user_city, user_indus, user_state);
+                    callapi(user_name, user_lname, user_phoneno, user_email, user_password, "", "", "", Indus, "");
                 }
             }
         });
@@ -279,180 +269,7 @@ public class RegisterActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
-    private void countryAPI(){
 
-        String URL="http://api.mymakeover.club/api/AppTrack/CountryList";
-        RequestQueue requestQueue=Volley.newRequestQueue(this);
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JsonParser jsonParser = new JsonParser();
-
-                String resstring = jsonParser.parse(response).getAsString();
-                Log.e("response", "onResponse: " + resstring);
-                try {
-                    JSONObject jsonObject=new JSONObject(resstring);
-                    JSONArray jsonArray=jsonObject.getJSONArray("Name");
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject jsonObject1=(JSONObject)jsonArray.get(i);
-                        String countryname=jsonObject1.getString("Name");
-                        String countryID=jsonObject1.getString("ID");
-                        arrayList_conID.add(countryID);
-                        arrayList_country.add(countryname);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-
-                }
-
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(RegisterActivity.this, android.R.layout.simple_spinner_item, arrayList_country);
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                country.setAdapter(arrayAdapter);
-                country.setSelection(100);
-                country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String country_ = arrayList_conID.get(position).toString();
-                        StateAPI(country_);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("error", "onErrorResponse: "+error );
-                Toast.makeText(RegisterActivity.this, "Poor Internet Connection", Toast.LENGTH_SHORT).show();
-            }
-        });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                6000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-        );
-        requestQueue.add(stringRequest);
-
-    }
-    private void StateAPI(final String country_) {
-
-        String URL="http://api.mymakeover.club/api/AppTrack/StateList?CountryId="+country_;
-        final ArrayList<String> arrayList_state = new ArrayList<>();
-        RequestQueue requestQueue=Volley.newRequestQueue(this);
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JsonParser jsonParser = new JsonParser();
-
-                String resstring = jsonParser.parse(response).getAsString();
-                Log.e("response", "onResponse: " + resstring);
-                try {
-                    JSONObject jsonObject=new JSONObject(resstring);
-                    JSONArray jsonArray=jsonObject.getJSONArray("State");
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject jsonObject1=(JSONObject)jsonArray.get(i);
-                        String statename=jsonObject1.getString("Name");
-                        String stateID=jsonObject1.getString("ID");
-                        arrayList_stateID.add(stateID);
-                        arrayList_state.add(statename);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(RegisterActivity.this, android.R.layout.simple_spinner_item, arrayList_state);
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                state.setAdapter(arrayAdapter);
-                state.setSelection(9);
-                state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String StateID = arrayList_stateID.get(position).toString();
-                        CityAPI(StateID);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                6000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-        );
-        requestQueue.add(stringRequest);
-
-    }
-    private void CityAPI(String stateID){
-
-        String URL="http://api.mymakeover.club/api/AppTrack/CityList?StateId="+stateID;
-        final ArrayList<String> arrayList_city = new ArrayList<>();
-        RequestQueue requestQueue=Volley.newRequestQueue(this);
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JsonParser jsonParser = new JsonParser();
-
-                String resstring = jsonParser.parse(response).getAsString();
-                Log.e("response", "onResponse: " + resstring);
-                try {
-                    JSONObject jsonObject=new JSONObject(resstring);
-                    JSONArray jsonArray=jsonObject.getJSONArray("City");
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject jsonObject1=(JSONObject)jsonArray.get(i);
-                        String statename=jsonObject1.getString("Name");
-
-                        arrayList_city.add(statename);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(RegisterActivity.this, android.R.layout.simple_spinner_item, arrayList_city);
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                city.setAdapter(arrayAdapter);
-                city.setSelection(1);
-                city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                6000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-        );
-        requestQueue.add(stringRequest);
-
-
-    }
 
     private void GetIndustry(){
         final ArrayList<String> arrayListIndustry=new  ArrayList<>();

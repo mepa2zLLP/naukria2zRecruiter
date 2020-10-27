@@ -12,7 +12,6 @@
             android:id="@+id/f1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:layout_centerInParent="true">
 
             <LinearLayout
@@ -43,7 +42,6 @@
                 <EditText
                     android:id="@+id/name"
                     android:layout_marginTop="5sp"
-                    android:background="@drawable/edittext_bg"
                     android:layout_height="40sp"
                     android:layout_width="match_parent"
                     android:paddingLeft="10sp"
@@ -59,7 +57,6 @@
                 <EditText
                     android:id="@+id/lname"
                     android:layout_marginTop="5sp"
-                    android:background="@drawable/edittext_bg"
                     android:layout_height="40sp"
                     android:layout_width="match_parent"
                     android:paddingLeft="10sp"
@@ -75,7 +72,6 @@
                 <EditText
                     android:id="@+id/Personalemail"
                     android:layout_width="match_parent"
-                    android:background="@drawable/edittext_bg"
                     android:layout_height="40sp"
                     android:paddingLeft="10sp"
                     android:layout_marginTop="5sp"
@@ -91,7 +87,6 @@
                 <EditText
                     android:id="@+id/Mobileno"
                     android:layout_width="match_parent"
-                    android:background="@drawable/edittext_bg"
                     android:layout_height="40sp"
                     android:paddingLeft="10sp"
                     android:singleLine="true"
@@ -101,21 +96,89 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Gender*"
                     android:layout_marginTop="10sp"
+                    android:text="Gender"
+                    android:textStyle="bold"
                     android:textColor="@color/black" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/gender"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5sp"
-                    android:paddingLeft="10sp"
-                    android:background="@drawable/edittext_bg"
                     android:layout_height="40sp"
-                    android:drawableTint="@color/darkblack"
-                    android:drawableRight="@drawable/ic_edit"
-                    android:entries="@array/gender"/>
+                    android:layout_marginTop="5sp"
+                    android:background="@drawable/spinner_bg"
+                    android:entries="@array/Gender"
+                    android:paddingLeft="5sp" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:text="@string/Country"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_marginTop="5sp"
+                    android:background="@drawable/spinner_bg"
+                    android:paddingLeft="5sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10sp"
+                            android:text="State"
+                            android:textStyle="bold"
+                            android:textColor="@color/black" />
+
+                        <Spinner
+                            android:id="@+id/state"
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:layout_marginTop="5sp"
+                            android:background="@drawable/spinner_bg"
+                            android:paddingLeft="5sp"
+                            android:layout_marginRight="5sp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10sp"
+                            android:text="City"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+
+                        <Spinner
+                            android:id="@+id/city"
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:layout_marginTop="5sp"
+                            android:background="@drawable/spinner_bg"
+                            android:paddingLeft="5sp"
+                            android:layout_marginLeft="5sp"/>
+                    </LinearLayout>
+                </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,13 +191,12 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="5sp"
                     android:paddingLeft="10sp"
-                    android:background="@drawable/edittext_bg"
                     android:layout_height="40sp"
                     android:singleLine="true"/>
 
                 <Button
                     android:id="@+id/next"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Next"
                     android:layout_marginTop="20sp"

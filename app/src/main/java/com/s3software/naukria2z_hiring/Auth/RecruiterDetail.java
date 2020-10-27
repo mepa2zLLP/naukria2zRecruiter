@@ -44,16 +44,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class RecruiterDetail extends AppCompatActivity {
-    EditText fname, lname, personalemail, Mobileno, gender, Designation, Comapanyno, comemail, Companyaddress, Postalcode, Companywebsite, companyname;
+    EditText fname, lname, personalemail, Mobileno, Designation, Comapanyno, comemail, Companyaddress, Postalcode, Companywebsite, companyname;
     Button next, submit, previous1, previous2, next1;
     FrameLayout f1, f2, f3;
-    EditText country, state, city;
+    Spinner country, state, city,gender;
     ProgressDialog progressDialog;
     ArrayList<String> arrayList_country, arrayList_conID, arrayList_stateID;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    Spinner Scountry, Sstate, Scity;
-    Button update, submit1, cancel, button_close;
+
     ErrorLogs errorLogs;
+    private int indusflag=0;
+    private String Indus;
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -80,12 +81,17 @@ public class RecruiterDetail extends AppCompatActivity {
         Comapanyno = findViewById(R.id.Comapanyno);
         comemail = findViewById(R.id.comemail);
         Companyaddress = findViewById(R.id.Companyaddress);
-        country = findViewById(R.id.Country);
-        state = findViewById(R.id.State);
-        city = findViewById(R.id.City);
+
         Postalcode = findViewById(R.id.Postalcode);
         Companywebsite = findViewById(R.id.Companywebsite);
-        gender = findViewById(R.id.gender);
+
+         gender = findViewById(R.id.gender);
+         country = findViewById(R.id.country);
+         state = findViewById(R.id.state);
+         city = findViewById(R.id.city);
+        // eIndus=findViewById(R.id.otherindustry);
+       //  industry=findViewById(R.id.industry);
+
         f1 = findViewById(R.id.f1);
         f2 = findViewById(R.id.f2);
         f3 = findViewById(R.id.f3);
@@ -102,35 +108,16 @@ public class RecruiterDetail extends AppCompatActivity {
         final String Last_Name = userdata.getString("Last_Name", "");
         final String User_Email = userdata.getString("User_Email", "");
         final String User_Pass = userdata.getString("User_Pass", "");
-        String Gender = userdata.getString("Gender", "");
         final String Phone_No = userdata.getString("Phone_No", "");
-        String Country = userdata.getString("Country", "");
-        String State = userdata.getString("State", "");
-        String City = userdata.getString("City", "");
+          countryAPI();
+
 
         fname.setText(First_Name);
         lname.setText(Last_Name);
         personalemail.setText(User_Email);
         Mobileno.setText(Phone_No);
-        gender.setText(Gender);
-        country.setText(Country);
-        state.setText(State);
-        city.setText(City);
 
-        country.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= country.getRight() - country.getTotalPaddingRight()) {
-                        // your action for drawable click event
 
-                        openDialog();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,19 +140,7 @@ public class RecruiterDetail extends AppCompatActivity {
 
             }
         });
-        gender.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= gender.getRight() - gender.getTotalPaddingRight()) {
-                        // your action for drawable click event
-                        openDialogGender();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
+
         Mobileno.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -255,19 +230,23 @@ public class RecruiterDetail extends AppCompatActivity {
                     String comaddress = Companyaddress.getText().toString();
                     String comweb = Companywebsite.getText().toString();
                     String Country = null, State = null, City = null;
-                    try {
-                        Country = country.getText().toString();
-                        State = state.getText().toString();
-                        City = city.getText().toString();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        String user_gender = gender.getSelectedItem().toString();
+
+                      String user_country=null,user_city=null,user_state=null;
+                    try{
+                        user_country = country.getSelectedItem().toString();
+                        user_city = city.getSelectedItem().toString();
+                        user_state = state.getSelectedItem().toString();
+                    }
+                    catch (Exception e){
+                        Toast.makeText(RecruiterDetail.this, "Country State City loading...", Toast.LENGTH_SHORT).show();
                     }
                     String postalcode = Postalcode.getText().toString();
-                    String Gender = gender.getText().toString();
+
                     if (Postalcode.getText().toString().isEmpty() || Postalcode.length() > 6) {
                         Postalcode.setError("Invalid");
                     } else {
-                        callRecruiterAPI(EmployeeID, f_name, l_name, pemail, mob, designation, comname, commobile, comEmail, comaddress, comweb, User_Pass, Country, State, City, postalcode, Gender);
+                        callRecruiterAPI(EmployeeID, f_name, l_name, pemail, mob, designation, comname, commobile, comEmail, comaddress, comweb, User_Pass, user_country, user_state, user_city, postalcode, user_gender);
 
                     }
                 }
@@ -276,74 +255,9 @@ public class RecruiterDetail extends AppCompatActivity {
 
     }
 
-    private void openDialog() {
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.input_dialog);
-        Scountry = dialog.findViewById(R.id.country);
-        Sstate = dialog.findViewById(R.id.state);
-        Scity = dialog.findViewById(R.id.city);
-        submit1 = dialog.findViewById(R.id.submit);
-        cancel = dialog.findViewById(R.id.cancel);
-        button_close = dialog.findViewById(R.id.button_close);
-        button_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        submit1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String Country = Scountry.getSelectedItem().toString();
-                String State = Sstate.getSelectedItem().toString();
-                String City = Scity.getSelectedItem().toString();
 
-                country.setText(Country);
-                state.setText(State);
-                city.setText(City);
-                dialog.dismiss();
-            }
-        });
-        countryAPI();
-        dialog.show();
-    }
 
-    private void openDialogGender() {
-        Button cancel, button_close, submit;
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.input_gender);
-        final Spinner Sgender = dialog.findViewById(R.id.gender);
-        submit = dialog.findViewById(R.id.submit);
-        cancel = dialog.findViewById(R.id.cancel);
-        button_close = dialog.findViewById(R.id.button_close);
-        button_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gendervalue = Sgender.getSelectedItem().toString();
-                gender.setText(gendervalue);
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
+
 
     private void callRecruiterAPI(String employeeID, String f_name, String l_name, final String pemail, String mob, String designation, String comname, String commobile, String comEmail, String comaddress, String comweb, String user_Pass, String country, String state, String city, String postalcode, String gender) {
 
@@ -458,9 +372,9 @@ public class RecruiterDetail extends AppCompatActivity {
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(RecruiterDetail.this, android.R.layout.simple_spinner_item, arrayList_country);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                Scountry.setAdapter(arrayAdapter);
-                Scountry.setSelection(100);
-                Scountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                country.setAdapter(arrayAdapter);
+                country.setSelection(100);
+                country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         String country_ = arrayList_conID.get(position).toString();
@@ -521,10 +435,10 @@ public class RecruiterDetail extends AppCompatActivity {
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(RecruiterDetail.this, android.R.layout.simple_spinner_item, arrayList_state);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                Sstate.setAdapter(arrayAdapter);
-                Sstate.setSelection(9);
+                state.setAdapter(arrayAdapter);
+                state.setSelection(9);
                 progressDialog.dismiss();
-                Sstate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         String StateID = arrayList_stateID.get(position).toString();
@@ -582,10 +496,10 @@ public class RecruiterDetail extends AppCompatActivity {
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(RecruiterDetail.this, android.R.layout.simple_spinner_item, arrayList_city);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                Scity.setAdapter(arrayAdapter);
-                Scity.setSelection(1);
+                city.setAdapter(arrayAdapter);
+                city.setSelection(1);
 
-                Scity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -612,4 +526,6 @@ public class RecruiterDetail extends AppCompatActivity {
 
 
     }
+
+
 }
