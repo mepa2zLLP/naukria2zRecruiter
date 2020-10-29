@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,18 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="60sp"
             android:id="@+id/toolbar"
-            android:background="@color/colorPrimaryDark"/>
+            app:title="Profile"/>
 
         <LinearLayout
             android:id="@+id/viewA"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.7"
-            android:background="@color/colorPrimaryDark"
+            android:background="#181d3d"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -30,8 +30,7 @@
                 android:layout_width="100sp"
                 android:layout_height="100sp"
                 app:cardCornerRadius="50sp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
+                android:layout_marginTop="20sp">
                 <ImageView
                     android:id="@+id/profile"
                     android:layout_width="match_parent"
@@ -39,6 +38,17 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/placeholder"/>
             </androidx.cardview.widget.CardView>
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:enabled="false"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:hint="Name"
+                android:textColorHint="@color/white"
+                android:textStyle="bold" />
            <!-- <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,29 +93,28 @@
                     android:orientation="vertical"
                     android:layout_marginLeft="5sp"
                     android:layout_marginRight="5sp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Name"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Name"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+<!--                    <EditText-->
+<!--                        android:id="@+id/name"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5sp"-->
+<!--                        android:enabled="false"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textColor="@color/lightblack"-->
+<!--                        android:textStyle="bold" />-->
 
-                    <EditText
-                        android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5sp"
-                        android:enabled="false"
-                        android:textSize="16sp"
-                        android:textColor="@color/lightblack"
-                        android:textStyle="bold" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Email Address"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/pemail"
                         android:layout_width="match_parent"
@@ -115,13 +124,13 @@
                         android:textSize="16sp"
                         android:textColor="@color/lightblack"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Contact no"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/pcontactno"
                         android:layout_width="match_parent"
@@ -131,13 +140,13 @@
                         android:textSize="16sp"
                         android:textColor="@color/lightblack"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Designation"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/designation"
                         android:layout_width="match_parent"
@@ -147,13 +156,13 @@
                         android:textColor="@color/lightblack"
                         android:enabled="false"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Gender"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/gender"
                         android:layout_width="match_parent"
@@ -165,13 +174,13 @@
                         android:textColor="@color/lightblack"
                         android:textSize="16sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Company Name"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/companyname"
                         android:layout_width="match_parent"
@@ -181,13 +190,13 @@
                         android:enabled="false"
                         android:textColor="@color/lightblack"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Company no."
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/companyno"
                         android:layout_width="match_parent"
@@ -197,13 +206,13 @@
                         android:textColor="@color/lightblack"
                         android:enabled="false"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Company Email"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/companyemail"
                         android:layout_width="match_parent"
@@ -213,6 +222,7 @@
                         android:textColor="@color/lightblack"
                         android:enabled="false"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -230,13 +240,13 @@
                         android:drawableRight="@drawable/ic_edit"
                         android:editable="false"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="State"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/state"
                         android:layout_width="match_parent"
@@ -247,13 +257,13 @@
                         android:editable="false"
                         android:textColor="@color/lightblack"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="City"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/city1"
                         android:layout_width="match_parent"
@@ -264,13 +274,13 @@
                         android:textColor="@color/lightblack"
                         android:enabled="false"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Pincode"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/pincode"
                         android:layout_width="match_parent"
@@ -287,12 +297,12 @@
                         android:text="Company Website"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
                     <EditText
                         android:id="@+id/companywebsite"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5sp"
+                        android:layout_marginBottom="5sp"
                         android:textSize="16sp"
                         android:textColor="@color/lightblack"
                         android:enabled="false"
@@ -301,9 +311,6 @@
                 </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
             </androidx.cardview.widget.CardView>
-
-
-
 
         </LinearLayout>
 
@@ -319,7 +326,6 @@
         android:src="@drawable/ic_camera"
         app:borderWidth="0sp"
         app:layout_anchor="@id/viewA"
-
         app:layout_anchorGravity="bottom|right|end" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -330,6 +336,7 @@
         android:layout_marginRight="10sp"
         android:layout_marginBottom="10sp"
         android:src="@drawable/ic_edit" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/updatedetail"
         android:layout_width="wrap_content"

@@ -70,8 +70,6 @@ public class ShowPostAdapter extends RecyclerView.Adapter<ShowPostAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-
-
         final String jobtitle = postData.get(position).getJobDesignation();
         final String location = postData.get(position).getJobLocation();
         final String qualification = postData.get(position).getQualification();
@@ -208,7 +206,6 @@ public class ShowPostAdapter extends RecyclerView.Adapter<ShowPostAdapter.ViewHo
             }
             }
         });
-
 
         holder.removejob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -386,8 +383,6 @@ public class ShowPostAdapter extends RecyclerView.Adapter<ShowPostAdapter.ViewHo
                     progressDialog.dismiss();
                 }
 
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -521,5 +516,4 @@ public class ShowPostAdapter extends RecyclerView.Adapter<ShowPostAdapter.ViewHo
 
         }
     }
-
 }

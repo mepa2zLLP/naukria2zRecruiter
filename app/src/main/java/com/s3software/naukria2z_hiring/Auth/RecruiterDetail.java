@@ -45,8 +45,8 @@ import java.util.ArrayList;
 
 public class RecruiterDetail extends AppCompatActivity {
     EditText fname, lname, personalemail, Mobileno, Designation, Comapanyno, comemail, Companyaddress, Postalcode, Companywebsite, companyname;
-    Button next, submit, previous1, previous2, next1;
-    FrameLayout f1, f2, f3;
+    Button next, submit, previous1;
+    FrameLayout f1, f2;
     Spinner country, state, city,gender;
     ProgressDialog progressDialog;
     ArrayList<String> arrayList_country, arrayList_conID, arrayList_stateID;
@@ -69,9 +69,7 @@ public class RecruiterDetail extends AppCompatActivity {
         setContentView(R.layout.activity_recruiter_detail);
         companyname = findViewById(R.id.Companyname);
         previous1 = findViewById(R.id.previous1);
-        previous2 = findViewById(R.id.previous2);
         fname = findViewById(R.id.name);
-        next1 = findViewById(R.id.next1);
         lname = findViewById(R.id.lname);
         next = findViewById(R.id.next);
         submit = findViewById(R.id.submit);
@@ -94,7 +92,6 @@ public class RecruiterDetail extends AppCompatActivity {
 
         f1 = findViewById(R.id.f1);
         f2 = findViewById(R.id.f2);
-        f3 = findViewById(R.id.f3);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait..");
         errorLogs=new ErrorLogs(getApplicationContext());
@@ -111,12 +108,10 @@ public class RecruiterDetail extends AppCompatActivity {
         final String Phone_No = userdata.getString("Phone_No", "");
           countryAPI();
 
-
         fname.setText(First_Name);
         lname.setText(Last_Name);
         personalemail.setText(User_Email);
         Mobileno.setText(Phone_No);
-
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,11 +126,12 @@ public class RecruiterDetail extends AppCompatActivity {
                     Mobileno.setError("Please fill it");
                 } else if (Designation.getText().toString().isEmpty()) {
                     Designation.setError("Please fill it");
+                } else if (Postalcode.getText().toString().isEmpty()) {
+                    Postalcode.setError("Please fill it");
                 } else {
                     f1.setVisibility(View.INVISIBLE);
                     f2.setVisibility(View.VISIBLE);
                 }
-                f3.setVisibility(View.INVISIBLE);
 
 
             }
@@ -163,53 +159,11 @@ public class RecruiterDetail extends AppCompatActivity {
         });
 
 
-        next1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (companyname.getText().toString().isEmpty()) {
-                    companyname.setError("Please fill it");
-                } else if (Companyaddress.getText().toString().isEmpty()) {
-                    Companyaddress.setError("Please fill it");
-                }
-                else if (!(comemail.getText().toString().isEmpty())) {
-                    if (!(comemail.getText().toString().matches(emailPattern))) {
-                        comemail.setError("InValid");
-                    }  else if (!(Companywebsite.getText().toString().isEmpty())) {
-                        String comwebsite = Companywebsite.getText().toString();
-                        if (!(Patterns.WEB_URL.matcher(comwebsite).matches())) {
-                            Companywebsite.setError("Invalid");
-                        } else {
-                            f1.setVisibility(View.INVISIBLE);
-                            f2.setVisibility(View.INVISIBLE);
-                            f3.setVisibility(View.VISIBLE);
-                        }
-                    }
-                    else {
-                        f1.setVisibility(View.INVISIBLE);
-                        f2.setVisibility(View.INVISIBLE);
-                        f3.setVisibility(View.VISIBLE);
-                    }
-                }else {
-                    f1.setVisibility(View.INVISIBLE);
-                    f2.setVisibility(View.INVISIBLE);
-                    f3.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
         previous1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 f2.setVisibility(View.INVISIBLE);
                 f1.setVisibility(View.VISIBLE);
-            }
-        });
-        previous2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                f3.setVisibility(View.INVISIBLE);
-                f2.setVisibility(View.VISIBLE);
             }
         });
 
@@ -254,10 +208,6 @@ public class RecruiterDetail extends AppCompatActivity {
         });
 
     }
-
-
-
-
 
     private void callRecruiterAPI(String employeeID, String f_name, String l_name, final String pemail, String mob, String designation, String comname, String commobile, String comEmail, String comaddress, String comweb, String user_Pass, String country, String state, String city, String postalcode, String gender) {
 
