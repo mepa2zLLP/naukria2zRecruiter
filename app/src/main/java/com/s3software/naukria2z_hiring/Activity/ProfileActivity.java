@@ -267,6 +267,19 @@ public class ProfileActivity extends AppCompatActivity {
                 Drawable[] compoundDrawables1 = company_country.getCompoundDrawables();
                 Drawable drawableRight1 = compoundDrawables1[2].mutate();
                 drawableRight1.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
+
+                name.setEnabled(false);
+                mobile.setEnabled(false);
+                designation.setEnabled(false);
+                gender.setEnabled(false);
+                company_name.setEnabled(false);
+                company_landline.setEnabled(false);
+                company_email.setEnabled(false);
+                company_country.setEnabled(false);
+                company_state.setEnabled(false);
+                company_city.setEnabled(false);
+                company_website.setEnabled(false);
+                pincode.setEnabled(false);
             }
         });
         callProfileAPI(PUser_Email);

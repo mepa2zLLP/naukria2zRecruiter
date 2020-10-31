@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:minHeight="?attr/actionBarSize"
-
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     <FrameLayout
@@ -52,7 +51,6 @@
                         android:text="Job Title"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="18sp" />
-
 
                     <TextView
                         android:id="@+id/status"

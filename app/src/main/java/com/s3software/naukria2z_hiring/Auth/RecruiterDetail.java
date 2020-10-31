@@ -83,12 +83,12 @@ public class RecruiterDetail extends AppCompatActivity {
         Postalcode = findViewById(R.id.Postalcode);
         Companywebsite = findViewById(R.id.Companywebsite);
 
-         gender = findViewById(R.id.gender);
-         country = findViewById(R.id.country);
-         state = findViewById(R.id.state);
-         city = findViewById(R.id.city);
+        gender = findViewById(R.id.gender);
+        country = findViewById(R.id.country);
+        state = findViewById(R.id.state);
+        city = findViewById(R.id.city);
         // eIndus=findViewById(R.id.otherindustry);
-       //  industry=findViewById(R.id.industry);
+        //  industry=findViewById(R.id.industry);
 
         f1 = findViewById(R.id.f1);
         f2 = findViewById(R.id.f2);
@@ -106,7 +106,7 @@ public class RecruiterDetail extends AppCompatActivity {
         final String User_Email = userdata.getString("User_Email", "");
         final String User_Pass = userdata.getString("User_Pass", "");
         final String Phone_No = userdata.getString("Phone_No", "");
-          countryAPI();
+        countryAPI();
 
         fname.setText(First_Name);
         lname.setText(Last_Name);
@@ -184,9 +184,9 @@ public class RecruiterDetail extends AppCompatActivity {
                     String comaddress = Companyaddress.getText().toString();
                     String comweb = Companywebsite.getText().toString();
                     String Country = null, State = null, City = null;
-                        String user_gender = gender.getSelectedItem().toString();
+                    String user_gender = gender.getSelectedItem().toString();
 
-                      String user_country=null,user_city=null,user_state=null;
+                    String user_country=null,user_city=null,user_state=null;
                     try{
                         user_country = country.getSelectedItem().toString();
                         user_city = city.getSelectedItem().toString();
@@ -241,8 +241,8 @@ public class RecruiterDetail extends AppCompatActivity {
                         editor.apply();
 
                         progressDialog.dismiss();
-                    //    MailAPI(name, pemail);
-                      //  SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
+                        //    MailAPI(name, pemail);
+                        //  SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
                         Intent i = new Intent(RecruiterDetail.this, VerificationWait.class);
                         startActivity(i);
                     }
@@ -261,7 +261,7 @@ public class RecruiterDetail extends AppCompatActivity {
                 errorLogs.AppErrorLog("LoginRecruiter",error);
                 Log.e("RecruiterDetail", "onErrorResponse: " + error);
                 progressDialog.dismiss();
-             }
+            }
         });
         requestQueue.add(stringRequest);
     }
