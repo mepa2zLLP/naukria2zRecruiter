@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout mSwipeRefreshLayout;
     String EmployeeID;
     ErrorLogs errorLogs;
+    LinearLayout jobLayout;
 
     @Override
     protected void onStart() {
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         mSwipeRefreshLayout = findViewById(R.id.swiperefresh_items);
         frameshow=findViewById(R.id.frameshow);
         adspost = findViewById(R.id.fab);
+        jobLayout=findViewById(R.id.joblayout);
         errorLogs=new ErrorLogs(getApplicationContext());
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Please wait..");
@@ -216,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     frameshow.setVisibility(View.VISIBLE);
+                    jobLayout.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.GONE);
                     progressDialog.dismiss();
                 }
