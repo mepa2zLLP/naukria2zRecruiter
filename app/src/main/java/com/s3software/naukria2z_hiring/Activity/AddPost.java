@@ -841,7 +841,7 @@ public class AddPost extends AppCompatActivity {
                 params.put("content-type", "application/json");
                 return params;
             }
-        };
+        };stringRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 5, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(stringRequest);
 
     }

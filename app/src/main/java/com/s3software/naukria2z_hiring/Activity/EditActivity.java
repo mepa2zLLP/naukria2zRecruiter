@@ -230,9 +230,12 @@ public class EditActivity extends AppCompatActivity {
                 String Currency=currency.getText().toString();
                 String aspecialisation=especialisation.getText().toString();
                 String Extraspecialisation=extraspecialisation.getText().toString();
-
-                callPostedApi(HREmail, PostID, PostedbyID, aPost, aCountry, aState, aCity, aFrom, aTo, aVacancy, aAbout, aQualification, aExperience, aJobType, aSoftwareKnowledge, aCategory, aCname, aCwebsite, location,Currency,aspecialisation,Extraspecialisation);
-            }
+ if (!(efrom.getText().toString().isEmpty())) {
+                    if (Integer.parseInt(efrom.getText().toString()) > Integer.parseInt(eto.getText().toString())) {
+                        Toast.makeText(EditActivity.this, "Invalid values of salary", Toast.LENGTH_SHORT).show();
+                    }else{
+                    callPostedApi(HREmail, PostID, PostedbyID, aPost, aCountry, aState, aCity, aFrom, aTo, aVacancy, aAbout, aQualification, aExperience, aJobType, aSoftwareKnowledge, aCategory, aCname, aCwebsite, location,Currency,aspecialisation,Extraspecialisation);
+            }}}
         });
 
     }
@@ -263,7 +266,7 @@ public class EditActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              String exp=  yearmin.getSelectedItem().toString()+"-"+yearmax.getSelectedItem().toString();
+              String exp=  yearmax.getSelectedItem().toString()+"-"+yearmin.getSelectedItem().toString();
               maxexp=yearmin.getSelectedItem().toString();
                minexp=yearmax.getSelectedItem().toString();
                 eexperience.setText(exp);
