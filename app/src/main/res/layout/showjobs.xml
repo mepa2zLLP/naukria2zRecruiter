@@ -111,7 +111,7 @@
                         android:drawableLeft="@drawable/ic_salary"
                         android:drawablePadding="3sp"
                         android:gravity=""
-                        android:text="Salary"
+                        android:text="Salary(Per Month)"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 

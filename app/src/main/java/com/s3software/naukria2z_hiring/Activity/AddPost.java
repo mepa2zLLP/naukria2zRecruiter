@@ -592,7 +592,7 @@ public class AddPost extends AppCompatActivity {
     private void getCity() {
         final ArrayList<Integer> mCityUserItems = new ArrayList<>();
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(AddPost.this);
-        mBuilder.setTitle("title");
+        mBuilder.setTitle("City");
         mBuilder.setMultiChoiceItems(citylistItems, citycheckItems, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {

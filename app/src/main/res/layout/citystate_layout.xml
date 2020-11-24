@@ -62,7 +62,7 @@
                         android:id="@+id/city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
+                        android:layout_weight="0.5"
                         android:paddingLeft="10sp"
                         android:singleLine="false"
                         android:isScrollContainer="true"
@@ -72,11 +72,12 @@
                         android:id="@+id/getcity"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1.7"
+                        android:layout_weight="1.5"
                         android:background="@color/colorPrimaryDark"
                         android:drawableLeft="@drawable/ic_expand_more"
                         android:drawableTint="@color/white"
-                        android:paddingLeft="15sp" />
+                        android:paddingLeft="15sp"
+                        android:drawableStart="@drawable/ic_expand_more" />
                 </LinearLayout>
 
             </LinearLayout>
