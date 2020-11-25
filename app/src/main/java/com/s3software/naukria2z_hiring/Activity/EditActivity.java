@@ -753,7 +753,7 @@ public class EditActivity extends AppCompatActivity {
     private void getStreams() {
         final ArrayList<Integer> mStreamUserItems = new ArrayList<>();
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-        mBuilder.setTitle("title");
+        mBuilder.setTitle("Stream");
         mBuilder.setMultiChoiceItems(streamlistItems, streamcheckItems, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
