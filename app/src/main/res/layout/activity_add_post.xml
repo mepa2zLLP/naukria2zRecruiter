@@ -581,7 +581,7 @@
 
                         <RadioButton
                             android:id="@+id/job"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
 
@@ -589,14 +589,14 @@
 
                         <RadioButton
                             android:id="@+id/fresher"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Fresher" />
 
                         <RadioButton
                             android:id="@+id/internship"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Internship" />

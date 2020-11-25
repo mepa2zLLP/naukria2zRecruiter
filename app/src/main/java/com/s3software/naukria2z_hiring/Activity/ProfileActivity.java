@@ -837,6 +837,7 @@ public class ProfileActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     } else {
                         editDetail.setVisibility(View.VISIBLE);
+                        updateDetail.setVisibility(View.GONE);
                         name.setEnabled(false);
                         mobile.setEnabled(false);
                         designation.setEnabled(false);

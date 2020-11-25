@@ -379,6 +379,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
             android:layout_weight="1"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/buttonround"
             android:text="Update Post"
             android:textColor="#ffffff" />
