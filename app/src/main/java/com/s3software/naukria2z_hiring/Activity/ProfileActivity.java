@@ -268,18 +268,7 @@ public class ProfileActivity extends AppCompatActivity {
                 Drawable drawableRight1 = compoundDrawables1[2].mutate();
                 drawableRight1.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
 
-                name.setEnabled(false);
-                mobile.setEnabled(false);
-                designation.setEnabled(false);
-                gender.setEnabled(false);
-                company_name.setEnabled(false);
-                company_landline.setEnabled(false);
-                company_email.setEnabled(false);
-                company_country.setEnabled(false);
-                company_state.setEnabled(false);
-                company_city.setEnabled(false);
-                company_website.setEnabled(false);
-                pincode.setEnabled(false);
+
             }
         });
         callProfileAPI(PUser_Email);
@@ -820,22 +809,6 @@ public class ProfileActivity extends AppCompatActivity {
                     if (status.equals("1")) {
 
                         Toast.makeText(ProfileActivity.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                        editDetail.setVisibility(View.VISIBLE);
-                        updateDetail.setVisibility(View.GONE);
-                        name.setEnabled(false);
-                        mobile.setEnabled(false);
-                        designation.setEnabled(false);
-                        gender.setEnabled(false);
-                        company_name.setEnabled(false);
-                        company_landline.setEnabled(false);
-                        company_email.setEnabled(false);
-                        company_country.setEnabled(false);
-                        company_state.setEnabled(false);
-                        company_city.setEnabled(false);
-                        company_website.setEnabled(false);
-                        pincode.setEnabled(false);
-                        progressDialog.dismiss();
-                    } else {
                         editDetail.setVisibility(View.VISIBLE);
                         updateDetail.setVisibility(View.GONE);
                         name.setEnabled(false);
